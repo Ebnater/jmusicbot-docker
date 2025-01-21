@@ -11,8 +11,8 @@ This guide will help you set up JMusicBot using Docker. Follow the instructions 
 
 1. Create a directory for JMusicBot:
     ```sh
-    mkdir -p /root/Jmusicbot
-    cd /root/Jmusicbot
+    mkdir -p path/to/Jmusicbot
+    cd path/to/Jmusicbot
     ```
 
 2. Create a `docker-compose.yml` file with the following content:
@@ -29,6 +29,7 @@ This guide will help you set up JMusicBot using Docker. Follow the instructions 
     ```
 
 3. Create a `config.txt` file in the same directory with your JMusicBot configuration.
+   You can find the `config.txt` here [JmusicBot Example Configuration](https://jmusicbot.com/config/)
 
 4. Start the JMusicBot container:
     ```sh
