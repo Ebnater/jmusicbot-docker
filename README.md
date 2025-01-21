@@ -21,7 +21,7 @@ This guide will help you set up JMusicBot using Docker. Follow the instructions 
 
     services:
       jmusicbot:
-        image: git.serv.eserver.icu/jmusicbot-docker:latest
+        image: git.serv.eserver.icu/ewbc/jmusicbot-docker:latest
         container_name: jmusicbot
         volumes:
           - ./config.txt:/opt/jmusicbot/config.txt
