@@ -17,9 +17,3 @@ jobs:
 
       - name: Build image
         run: docker build -t ${{ vars.URL }}/${{ vars.repository }}:latest .
-
-      - name: Verify Image
-        run: docker images
-
-      - name: Run image
-        run: docker run -d ${{ vars.URL }}/${{ vars.repository }}:latest
