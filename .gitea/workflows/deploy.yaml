@@ -21,13 +21,5 @@ jobs:
       - name: Verify Image
         run: docker images
 
-      - name: Push image
-        run: docker push ${{ vars.URL }}/${{ vars.repository }}:latest
-
-      - name: Connect Docker Image to Gitea Repo
-        run: |
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.REGISTRY_PAT }}" \
-            -H "Content-Type: application/json" \
-            -d '{"name":"musicbot","image":"'"${{ vars.URL }}/${{ vars.repository }}:latest"'"}' \
-            ${{ vars.URL }}/api/v1/repos/${{ vars.repository }}/containers
+      - name: Run image
+        run: docker run -d ${{ vars.URL }}/${{ vars.repository }}:latest
