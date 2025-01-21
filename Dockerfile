@@ -8,9 +8,9 @@ ADD https://github.com/jagrosh/MusicBot/releases/download/0.4.3/JMusicBot-0.4.3.
 
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
-RUN mkdir /opt/jmusicbot/config
+#RUN mkdir /opt/jmusicbot/config
 
-VOLUME [ "/opt/jmusicbot/config" ]
+#VOLUME [ "/opt/jmusicbot/config" ]
 
 ENV VERSION=$VERSION
 
