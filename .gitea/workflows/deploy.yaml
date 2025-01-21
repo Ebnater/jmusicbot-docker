@@ -18,6 +18,9 @@ jobs:
       - name: Build image
         run: docker build -t ${{ vars.URL }}/${{ vars.repository }}/jmusicbot:latest .
 
+      - name: Verify Image
+        run: docker images
+
       - name: Push image
         run: docker push ${{ vars.URL }}/${{ vars.repository }}/jmusicbot:latest
 
