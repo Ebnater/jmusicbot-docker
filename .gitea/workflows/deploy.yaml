@@ -21,5 +21,8 @@ jobs:
       - name: Verify Image
         run: docker images
 
+      - name: Delete old image
+        run: docker rmi ${{ vars.URL }}/${{ vars.repository }}:latest
+
       - name: Run image
         run: docker run -d ${{ vars.URL }}/${{ vars.repository }}:latest
