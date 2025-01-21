@@ -17,3 +17,6 @@ jobs:
 
       - name: Build image
         run: docker build -t ${{ vars.URL }}/${{ vars.repository }}:latest .
+
+      - name: Push image
+        run: docker push ${{ vars.URL }}/${{ vars.repository }}:latest
