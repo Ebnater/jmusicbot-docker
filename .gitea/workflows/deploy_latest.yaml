@@ -20,7 +20,7 @@ jobs:
           # Get the highest tag
           highest_tag=$(echo "$tags" | tail -n 1)
           # Set the highest tag as an output variable
-          echo "highest_tag=${highest_tag}" >> $GITHUB_ENV
+          echo "highest_tag=${highest_tag}"
 
       - name: Set up Docker version
         run: echo "VERSION=${{ env.highest_tag#v }}" >> $GITHUB_ENV
