@@ -2,8 +2,8 @@ name: Deploy Musicbot
 run-name: ${{ gitea.actor }} is deploying ${{ vars.repository }}
 on:
   push:
-    #branches:
-    #  - main
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
@@ -11,12 +11,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Get highest tag
+        id: get_highest_tag
+        run: |
+          # Get all tags and sort them
+          tags=$(git tag | sort -V)
+          # Get the highest tag
+          highest_tag=$(echo "$tags" | tail -n 1)
+          # Set the highest tag as an output variable
+          echo "highest_tag=${highest_tag}" >> $GITHUB_ENV
 
       - name: Login to Gitea Registry
         run: echo "${{ secrets.REGISTRY_PAT }}" | docker login ${{ vars.URL }} -u ${{ secrets.REGISTRY_USER }} --password-stdin
 
       - name: Build image
-        run: docker build -t ${{ vars.URL }}/${{ vars.repository }}:latest .
+        run: docker build --build-arg VERSION=${{ env.VERSION }} -t ${{ vars.URL }}/${{ vars.repository }}:latest .
 
       - name: Push image
         run: docker push ${{ vars.URL }}/${{ vars.repository }}:latest
