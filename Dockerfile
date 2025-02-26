@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11-openj9
+FROM openjdk:11
 
 ARG VERSION
 
