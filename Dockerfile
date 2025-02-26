@@ -1,6 +1,7 @@
 FROM openjdk:11
 
 ARG VERSION
+
 ENV VERSION=$VERSION
 
 WORKDIR /opt/jmusicbot
