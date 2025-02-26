@@ -16,6 +16,7 @@ jobs:
         id: get_highest_tag
         run: |
           # Get all tags and sort them
+          git tag
           tags=$(git tag | sort -V)
           # Get the highest tag
           highest_tag=$(echo "$tags" | tail -n 1)
