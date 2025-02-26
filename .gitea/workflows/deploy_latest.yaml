@@ -15,13 +15,12 @@ jobs:
       - name: Get highest tag
         id: get_highest_tag
         run: |
-          # Get all tags and sort them
-          tags=$(git tag | sort -V)
-          # Get the highest tag
-          highest_tag=$(echo "$tags" | tail -n 1)
-          # Set the highest tag as an output variable
-          echo "highest_tag=${highest_tag}" >> $GITHUB_ENV
-
+          # Get all tags, sort them, and get the highest tag
+          highest_tag=$(git tag | sort -V | tail -n 1)
+          # Remove the 'v' prefix and set the VERSION environment variable
+          echo "VERSION=${highest_tag#v}" >> $GITHUB_ENV
+          echo "Highest tag is: $highest_tag"
+      
       - name: Login to Gitea Registry
         run: echo "${{ secrets.REGISTRY_PAT }}" | docker login ${{ vars.URL }} -u ${{ secrets.REGISTRY_USER }} --password-stdin
 
