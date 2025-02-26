@@ -17,6 +17,7 @@ jobs:
         run: |
           # Get all tags and sort them
           tags=$(git tag | sort -V)
+          ls -la
           echo $tags
           # Get the highest tag
           highest_tag=$(echo "$tags" | tail -n 1)
