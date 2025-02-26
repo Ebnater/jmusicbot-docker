@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'
 
 jobs:
   build-and-deploy:
@@ -11,12 +13,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Set up Docker version
+        run: echo "VERSION=${GITEA_TAG}" 
 
       - name: Login to Gitea Registry
         run: echo "${{ secrets.REGISTRY_PAT }}" | docker login ${{ vars.URL }} -u ${{ secrets.REGISTRY_USER }} --password-stdin
 
       - name: Build image
-        run: docker build -t ${{ vars.URL }}/${{ vars.repository }}:latest .
+        run: docker build -t ${{ vars.URL }}/${{ vars.repository }}:{GITEA_TAG}.
 
       - name: Push image
-        run: docker push ${{ vars.URL }}/${{ vars.repository }}:latest
+        run: docker push ${{ vars.URL }}/${{ vars.repository }}:{GITEA_TAG}
