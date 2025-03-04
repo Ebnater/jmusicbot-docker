@@ -21,7 +21,7 @@ jobs:
           git tag
           tags=$(git tag | sort -V) && echo $tags
           # Get the highest tag
-          highest_tag=$(echo "$tags" | tail -n 1)
+          highest_tag=$(echo "$tags" | tail -n 1) && echo $highest_tag
           # Set the highest tag as an output variable
           echo "TAG=${highest_tag}" >> $GITHUB_ENV && echo $TAG
 
