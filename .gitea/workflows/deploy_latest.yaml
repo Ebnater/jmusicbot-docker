@@ -26,7 +26,7 @@ jobs:
           echo "highest_tag=${highest_tag}" >> $GITHUB_ENV && echo $highest_tag
 
       - name: Set up Docker version
-        run: echo "VERSION=${{ env.highest_tag#v }}" >> $GITHUB_ENV
+        run: echo "VERSION=${{ env.highest_tag#v }}" >> $GITHUB_ENV && echo $env.VERSION
       
       - name: Login to Gitea Registry
         run: echo "${{ secrets.REGISTRY_PAT }}" | docker login ${{ vars.URL }} -u ${{ secrets.REGISTRY_USER }} --password-stdin
