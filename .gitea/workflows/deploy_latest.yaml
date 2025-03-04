@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: Get highest tag
         id: get_highest_tag
@@ -25,9 +27,6 @@ jobs:
 
       - name: Set up Docker version
         run: echo "VERSION=${{ env.highest_tag#v }}" >> $GITHUB_ENV
-
-      - name: Debug
-        run: sleep 9999
       
       - name: Login to Gitea Registry
         run: echo "${{ secrets.REGISTRY_PAT }}" | docker login ${{ vars.URL }} -u ${{ secrets.REGISTRY_USER }} --password-stdin
