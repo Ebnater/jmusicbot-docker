@@ -19,11 +19,11 @@ jobs:
         run: |
           # Get all tags and sort them
           git tag
-          tags=$(git tag | sort -V) && echo $tags
+          tags=$(git tag | sort -V | tail -n 1) && echo $tags
           # Get the highest tag
-          highest_tag=$(echo "$tags" | tail -n 1) && echo $highest_tag
+          # highest_tag=$(echo "$tags" ) && echo $highest_tag
           # Set the highest tag as an output variable
-          echo "TAG=${highest_tag}" >> $GITHUB_ENV && echo $TAG
+          echo "TAG=${tags}" >> $GITHUB_ENV && echo $TAG
 
       - name: Set up Docker version
         run: echo "VERSION=${{ env.TAG#v }}" >> $GITHUB_ENV && echo $env.VERSION
