@@ -25,6 +25,9 @@ jobs:
 
       - name: Set up Docker version
         run: echo "VERSION=${{ env.highest_tag#v }}" >> $GITHUB_ENV
+
+      - name: Debug
+        run: sleep 9999
       
       - name: Login to Gitea Registry
         run: echo "${{ secrets.REGISTRY_PAT }}" | docker login ${{ vars.URL }} -u ${{ secrets.REGISTRY_USER }} --password-stdin
