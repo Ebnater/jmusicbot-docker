@@ -28,14 +28,14 @@ jobs:
       - name: Set up Docker version
         run: echo "VERSION=${{ env.TAG#v }}" >> $GITHUB_ENV && echo $env.VERSION
 
-      - name: Debug
-        run: sleep 9999
+      #- name: Debug
+      #  run: sleep 9999
       
       - name: Login to Gitea Registry
         run: echo "${{ secrets.REGISTRY_PAT }}" | docker login ${{ vars.URL }} -u ${{ secrets.REGISTRY_USER }} --password-stdin
 
       - name: Build image
-        run: docker build --build-arg VERSION=${{ env.VERSION }} -t ${{ vars.URL }}/${{ vars.repository }}:latest .
+        run: docker build --build-arg VERSION=$(git tag | sort -V | tail -n 1 | sed 's/^v//') -t ${{ vars.URL }}/${{ vars.repository }}:latest .
 
       - name: Push image
         run: docker push ${{ vars.URL }}/${{ vars.repository }}:latest
