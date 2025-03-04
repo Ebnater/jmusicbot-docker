@@ -23,12 +23,10 @@ jobs:
           # Get the highest tag
           highest_tag=$(echo "$tags" | tail -n 1)
           # Set the highest tag as an output variable
-          echo "highest_tag=${highest_tag}" >> $GITHUB_ENV
+          echo "highest_tag=${highest_tag}" >> $GITHUB_ENV && echo $GITHUB_ENV
 
       - name: Set up Docker version
-        run: |
-          echo "VERSION=${{ env.highest_tag#v }}" >> $GITHUB_ENV
-          echo ${{ env.highest_tag#v }}
+        run: echo "VERSION=${{ env.highest_tag#v }}" >> $GITHUB_ENV
       
       - name: Login to Gitea Registry
         run: echo "${{ secrets.REGISTRY_PAT }}" | docker login ${{ vars.URL }} -u ${{ secrets.REGISTRY_USER }} --password-stdin
