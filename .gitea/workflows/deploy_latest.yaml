@@ -14,23 +14,6 @@ jobs:
         with:
           fetch-depth: 0
       
-      - name: Get highest tag
-        id: get_highest_tag
-        run: |
-          # Get all tags and sort them
-          git tag
-          tags=$(git tag | sort -V | tail -n 1) && echo $tags
-          # Get the highest tag
-          # highest_tag=$(echo "$tags" ) && echo $highest_tag
-          # Set the highest tag as an output variable
-          echo "TAG=${tags}" >> $GITHUB_ENV && echo $TAG
-
-      - name: Set up Docker version
-        run: echo "VERSION=${{ env.TAG#v }}" >> $GITHUB_ENV && echo $env.VERSION
-
-      #- name: Debug
-      #  run: sleep 9999
-      
       - name: Login to Gitea Registry
         run: echo "${{ secrets.REGISTRY_PAT }}" | docker login ${{ vars.URL }} -u ${{ secrets.REGISTRY_USER }} --password-stdin
 
