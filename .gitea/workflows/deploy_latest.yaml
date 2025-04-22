@@ -3,7 +3,7 @@ run-name: ${{ gitea.actor }} is deploying ${{ vars.repository }}
 on:
   push:
     branches:
-      - main
+      - youtube_fix
 
 jobs:
   build-and-deploy:
