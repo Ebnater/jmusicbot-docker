@@ -2,6 +2,10 @@
 
 This guide will help you set up JMusicBot using Docker. Follow the instructions below to get started.
 
+> [!IMPORTANT]
+> This version is forked from SeVile's MusicBot in order to temporarily fix older Version of lavalink
+> Visit his [Github Repo](https://github.com/SeVile/MusicBot) for more information
+
 ## Prerequisites
 
 - Docker installed on your system
